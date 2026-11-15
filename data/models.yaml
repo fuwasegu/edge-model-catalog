@@ -16,6 +16,7 @@
 #   status:     covered = written up in depth / candidate = card-read, not yet covered
 #   hook:       one line: what makes it interesting
 #   caveats:    honest limitations from the primary source (optional)
+#   hook_ja / caveats_ja: Japanese translations of hook / caveats
 models:
   - id: qwen3-5-4b-3d-coder
     name: Qwen3.5-4B-3D-Coder
@@ -30,7 +31,9 @@ models:
     verified: 2026-11-09
     status: covered
     hook: Fine-tune that writes Three.js 3D scenes as a single HTML file.
+    hook_ja: "Three.js の3Dシーンを単一のHTMLファイルとして書き出すファインチューン。"
     caveats: No benchmarks; quality shown via curated screenshots. Author calls it an experiment.
+    caveats_ja: "ベンチマークなし。品質は厳選されたスクリーンショットで示されている。作者自身が実験的なものと位置づけている。"
 
   - id: qwen3-5-4b-glb-3d-coder
     name: Qwen3.5-4B-GLB-3D-Coder
@@ -45,7 +48,9 @@ models:
     verified: 2026-11-06
     status: covered
     hook: Sibling of the 3D-Coder that exports scenes as GLB for game engines.
+    hook_ja: "3D-Coder の兄弟モデル。シーンをゲームエンジン向けに GLB で書き出せる。"
     caveats: Long outputs (avg ~20K tokens); provider-measured only.
+    caveats_ja: "出力が長い（平均約2万トークン）。数値は提供元計測のみ。"
 
   - id: qwen3-1-7b-glb-3d-coder
     name: Qwen3-1.7B-GLB-3D-Coder
@@ -60,6 +65,7 @@ models:
     verified: 2026-11-13
     status: covered
     hook: The 3D-Coder experiment shrunk to 1.7B; GLB export built in, runs on CPU.
+    hook_ja: "3D-Coder の実験を 1.7B に縮小したもの。GLB 出力を内蔵し、CPU で動く。"
 
   - id: haas-ja-v1
     name: Haas-ja-v1.0
@@ -73,7 +79,9 @@ models:
     verified: 2026-11-02
     status: covered
     hook: Japanese-specialized ASR (Parakeet-TDT + Kimi Delta Attention), CER strict 6.12% (provider).
+    hook_ja: "日本語特化の音声認識（Parakeet-TDT + Kimi Delta Attention）。CER は strict 条件で 6.12%（提供元計測）。"
     caveats: Provider benchmarks only; official runtime is Linux + NVIDIA GPU.
+    caveats_ja: "ベンチマークは提供元のもののみ。公式ランタイムは Linux + NVIDIA GPU。"
 
   - id: mage-vl-cowork
     name: Mage-VL-Cowork
@@ -88,7 +96,9 @@ models:
     verified: 2026-11-03
     status: covered
     hook: Computer-use agent that switches between GUI clicking and bash/code in one policy.
+    hook_ja: "GUI のクリック操作と bash／コード実行を1つのポリシーで切り替えるコンピュータ操作エージェント。"
     caveats: OSWorld-Verified 66.0% is provider-measured; a 9B rival scores higher on the same card.
+    caveats_ja: "OSWorld-Verified 66.0% は提供元計測。同じカード上で 9B の競合モデルの方が高いスコアを出している。"
 
   - id: lfm3-1-7b
     name: LFM3-1.7B (family)
@@ -103,7 +113,9 @@ models:
     verified: 2026-11-04
     status: covered
     hook: One 1.7B backbone branched into text / vision / audio / omni / decision variants.
+    hook_ja: "1つの 1.7B バックボーンから、テキスト／ビジョン／音声／オムニ／判断の各バリアントが派生している。"
     caveats: Provider numbers only. The d1 decision variants answer with probabilities, not prose.
+    caveats_ja: "数値は提供元のもののみ。d1 の判断バリアントは文章ではなく確率で答える。"
 
   - id: embeddinggemma-2
     name: EmbeddingGemma 2
@@ -117,6 +129,7 @@ models:
     verified: 2026-11-05
     status: covered
     hook: 740M multimodal embedding model (text+image+audio) widely repurposed beyond RAG.
+    hook_ja: "740M のマルチモーダル埋め込みモデル（テキスト＋画像＋音声）。RAG 以外の用途にも広く転用されている。"
 
   - id: molmo2-4b-tb
     name: Molmo2-4B-tb
@@ -132,7 +145,9 @@ models:
     verified: 2026-11-07
     status: covered
     hook: VLM fine-tuned as the high-level brain for a toy-block stacking robot (~6 Hz).
+    hook_ja: "おもちゃのブロックを積むロボットの上位の頭脳としてファインチューンされた VLM（約6Hz）。"
     caveats: Research/education use; ~20GB GPU memory for bf16; provider-measured only.
+    caveats_ja: "研究・教育用途。bf16 では約20GBの GPU メモリが必要。数値は提供元計測のみ。"
 
   - id: magi-1-1-4b
     name: magi-1.1-4B
@@ -147,7 +162,9 @@ models:
     verified: 2026-11-08
     status: covered
     hook: Mixed-precision GGUF (2.61 GiB) + a 360-line self-distilled LoRA that stops overthinking.
+    hook_ja: "混合精度 GGUF（2.61GiB）と、考えすぎを止める360行の自己蒸留 LoRA。"
     caveats: Provider-measured on one RTX 5070; text only (vision encoder not included).
+    caveats_ja: "提供元が RTX 5070 1台で計測。テキストのみ（ビジョンエンコーダは含まれない）。"
 
   - id: idol
     name: idol
@@ -162,7 +179,9 @@ models:
     verified: 2026-11-09
     status: covered
     hook: Single image to 3D Gaussian Splat (.ply, up to ~1M gaussians, occluded sides generated).
+    hook_ja: "1枚の画像から 3D Gaussian Splat を生成（.ply、最大約100万ガウシアン、隠れた面も生成）。"
     caveats: Provider benchmarks; ~7.2GB peak VRAM on consumer GPUs.
+    caveats_ja: "ベンチマークは提供元のもの。一般向け GPU でピーク VRAM 約7.2GB。"
 
   - id: unlimited-ocr-2
     name: Unlimited-OCR-2
@@ -176,7 +195,9 @@ models:
     verified: 2026-11-09
     status: covered
     hook: Document-parsing VLM whose per-step cost stays ~constant over hundreds of pages.
+    hook_ja: "数百ページにわたってもステップあたりのコストがほぼ一定に保たれる、文書解析 VLM。"
     caveats: Provider benchmarks (incl. their new MarathonDocBench).
+    caveats_ja: "ベンチマークは提供元のもの（新設の MarathonDocBench を含む）。"
 
   - id: xiaomi-ocr-0
     name: Xiaomi-OCR-0
@@ -191,6 +212,7 @@ models:
     verified: 2026-11-09
     status: covered
     hook: 0.87B OCR specialist; card documents its data engine and training findings in detail.
+    hook_ja: "0.87B の OCR 特化モデル。カードにはデータエンジンと学習で得た知見が詳しく書かれている。"
 
   - id: lightonocr-historic-german
     name: LightOnOCR-3-1B-Historic-German-Handwriting
@@ -205,6 +227,7 @@ models:
     verified: 2026-11-09
     status: covered
     hook: 1B OCR fine-tuned to read 200-year-old German handwriting (Humboldt letters).
+    hook_ja: "200年前のドイツ語手書き文字（フンボルトの書簡）を読むためにファインチューンされた 1B OCR。"
 
   - id: colgrep-agent-2b
     name: ColGrep-Agent-2B
@@ -219,7 +242,9 @@ models:
     verified: 2026-11-10
     status: covered
     hook: Agent that locates code (file + line range) for an issue, built to be outsourced to by bigger coding agents.
+    hook_ja: "課題に対応するコードの場所（ファイル＋行範囲）を特定するエージェント。より大きなコーディングエージェントから処理を外注されることを想定して作られている。"
     caveats: File F1 76.18 / Line F1 19.92 on provider's location-task versions of SWE-bench.
+    caveats_ja: "提供元が用意した SWE-bench の位置特定タスク版で File F1 76.18／Line F1 19.92。"
 
   - id: weight-space-programming-0-8b
     name: Qwen3.5-0.8B-weight-space-programming
@@ -234,7 +259,9 @@ models:
     verified: 2026-11-10
     status: covered
     hook: A frontier LLM edited 0.016% of the weights directly (no training); MATH-500 7.9% -> 48.1%.
+    hook_ja: "フロンティア LLM が重みの 0.016% を直接編集（学習なし）。MATH-500 が 7.9% から 48.1% に。"
     caveats: Author-measured; independently re-run by a third party at 51.0%.
+    caveats_ja: "作者計測。第三者が独立に再実行した結果は 51.0%。"
 
   - id: indra-ocr
     name: Indra OCR
@@ -249,7 +276,9 @@ models:
     verified: 2026-11-10
     status: covered
     hook: ~1.25M-parameter recognizer (7.3M total, ~76MB) doing OCR on CPU via ONNX, 80+ languages.
+    hook_ja: "約125万パラメータの認識器（全体で730万、約76MB）。ONNX で CPU 上の OCR ができ、80以上の言語に対応。"
     caveats: Weak on complex tables and handwriting per the card itself.
+    caveats_ja: "カード自身が、複雑な表と手書き文字は苦手だと明記している。"
 
   - id: underdog-woof
     name: Underdog Woof (+ Japanese)
@@ -263,6 +292,7 @@ models:
     verified: 2026-11-11
     status: covered
     hook: ~40MB numpy-only TTS running 13-14x realtime on one CPU thread; Japanese edition tuned for kanji/numbers/dates.
+    hook_ja: "約40MB、numpy のみで動く TTS。CPU 1スレッドで実時間の13〜14倍速。日本語版は漢字・数字・日付の読みに合わせて調整されている。"
 
   - id: chessmaster-qwen3-5-0-8b
     name: Brainsurged Chessmaster Qwen3.5-0.8B
@@ -277,7 +307,9 @@ models:
     verified: 2026-11-11
     status: covered
     hook: Chess specialist made with surgical LoRA on 0.63% of weights; unseen-position accuracy 10.8% -> 75.8%.
+    hook_ja: "重みの 0.63% への外科的 LoRA で作られたチェス特化モデル。未見局面での正答率が 10.8% から 75.8% に。"
     caveats: Provider notes bench strength != match strength (lost its engine matches; the 4B sibling won).
+    caveats_ja: "提供元も、ベンチの強さは対局の強さと一致しないと注記している（エンジンとの対局では敗北。4B の兄弟モデルは勝利した）。"
 
   - id: brailleqwen-2b
     name: BrailleQwen-2B
@@ -292,7 +324,9 @@ models:
     verified: 2026-11-11
     status: covered
     hook: Reads photos of Braille; trained only on ~277K synthetic Braille images, no real photos.
+    hook_ja: "点字の写真を読み取る。学習に使ったのは約27.7万枚の合成点字画像のみで、実写は使っていない。"
     caveats: Card itself warns its BrailleBench scores are optimistic (bench used as dev set).
+    caveats_ja: "カード自身が、BrailleBench のスコアは楽観的だと警告している（ベンチを開発用セットとして使っているため）。"
 
   - id: meow-decoder
     name: Meow Decoder
@@ -305,7 +339,9 @@ models:
     verified: 2026-11-11
     status: covered
     hook: Classifies cat meows into 3 contexts (food / attention / stress); 65.9% on unseen cats.
+    hook_ja: "猫の鳴き声を3つの文脈（ごはん／かまって／ストレス）に分類。未見の猫でも 65.9%。"
     caveats: Cannot detect pain or illness (card states this); retrainable on your own cat.
+    caveats_ja: "痛みや病気は検出できない（カードに明記）。自分の猫の声で再学習も可能。"
 
   - id: jovox-64
     name: JoVox-64
@@ -318,6 +354,7 @@ models:
     verified: 2026-11-11
     status: covered
     hook: One image to a 64^3 voxel structure via hierarchical flow matching (weights ~6.2GB).
+    hook_ja: "1枚の画像から、階層型フローマッチングで 64^3 のボクセル構造を生成（重みは約6.2GB）。"
 
   - id: seele-1-0-3-3b
     name: seele-1.0-3.3B
@@ -332,7 +369,9 @@ models:
     verified: 2026-11-11
     status: covered
     hook: Decision model that never writes prose; made by pruning 8 layers + quantizing, no retraining.
+    hook_ja: "文章を一切書かない判断モデル。8層の枝刈りと量子化で作られ、再学習はしていない。"
     caveats: Keeps 98% of parent score at 56% GPU memory (provider); GSM8K -15.9 among honest weak spots.
+    caveats_ja: "GPU メモリ 56% で親モデルのスコアの 98% を維持（提供元）。弱点も正直に開示されており、GSM8K は -15.9。"
 
   - id: rsi-jev-v7-vl-3b
     name: rsi-jev-v7.0-vl-3b
@@ -346,7 +385,9 @@ models:
     verified: 2026-11-11
     status: covered
     hook: Vision decision model sliced at layer 20 of 32 (no retraining); early-exit head sets the effort level.
+    hook_ja: "32層のうち20層目で切り出したビジョン判断モデル（再学習なし）。早期終了ヘッドが推論の effort レベルを決める。"
     caveats: Card says it was produced by an AI agent's self-improvement loop; provider numbers only.
+    caveats_ja: "カードによれば、AI エージェントの自己改善ループによって作られた。数値は提供元のもののみ。"
 
   - id: tinyclip-39m-pixelart
     name: TinyCLIP-39M-PixelArt
@@ -360,7 +401,9 @@ models:
     verified: 2026-11-11
     status: covered
     hook: 83M-total CLIP fine-tuned on 1.4M pixel-art images for text-to-sprite search; Matryoshka dims.
+    hook_ja: "全体83M の CLIP を140万枚のドット絵画像でファインチューン。テキストからスプライトを検索できる。Matryoshka 次元に対応。"
     caveats: No quantitative benchmark on the card.
+    caveats_ja: "カードに定量ベンチマークの記載なし。"
 
   - id: mach-boom
     name: Mach-Boom
@@ -375,7 +418,9 @@ models:
     verified: 2026-11-11
     status: covered
     hook: "English TTS quantized to 3.5 bits/weight: an 18.2MB file, 8-10x realtime on one CPU core."
+    hook_ja: "重みあたり3.5ビットに量子化された英語 TTS。ファイルは18.2MB、CPU 1コアで実時間の8〜10倍速。"
     caveats: WER 5.18% provider-measured; degrades to 14.01% without text normalization rules.
+    caveats_ja: "WER 5.18% は提供元計測。テキスト正規化ルールなしでは 14.01% まで悪化する。"
 
   - id: botpsy-0-8b
     name: BotPsy-0.8B
@@ -390,7 +435,9 @@ models:
     verified: 2026-11-13
     status: covered
     hook: On-device personal-assistant specialist; ~2x base model on tool-use benches (provider).
+    hook_ja: "オンデバイスのパーソナルアシスタント特化モデル。ツール使用ベンチでベースモデルの約2倍（提供元）。"
     caveats: "Independently verified on a CPU VM (2026-11-13): 5/5 tool-call cases passed; Japanese args keep Japanese day names."
+    caveats_ja: "CPU の VM で独立検証済み（2026-11-13）。ツール呼び出し5ケースすべて成功。日本語の引数では曜日名が日本語のまま渡る。"
 
   - id: zonos3-mini
     name: ZONOS3-Mini
@@ -404,7 +451,9 @@ models:
     verified: 2026-11-12
     status: covered
     hook: "Latent-MoE TTS: 800M total but only ~100M active per token; voice cloning, runs in browser (WebGPU)."
+    hook_ja: "Latent-MoE 方式の TTS。全体800M だがトークンあたりの活性化は約100M。音声クローン対応で、ブラウザ（WebGPU）でも動く。"
     caveats: Provider numbers (80ms median first audio on H100-class serving).
+    caveats_ja: "数値は提供元のもの（H100 級のサービングで初回音声までの中央値80ms）。"
 
   - id: orukeet
     name: Orukeet
@@ -419,7 +468,9 @@ models:
     verified: 2026-11-12
     status: covered
     hook: Half of the ASR encoder's temporal filters replaced with frozen fitted Gabor kernels.
+    hook_ja: "ASR エンコーダの時間フィルタの半分を、フィッティング済みで凍結した Gabor カーネルに置き換えた。"
     caveats: Card discloses test-other was used for final adaptation and checkpoint selection.
+    caveats_ja: "カードは、test-other を最終適応とチェックポイント選択に使ったことを開示している。"
 
   - id: turnenddetection-v3
     name: TurnEndDetection-multilingual v3
@@ -432,7 +483,9 @@ models:
     verified: 2026-11-13
     status: covered
     hook: Predicts P(turn done) and how long to wait, from last 3s of audio + text + history; ~32ms on CPU.
+    hook_ja: "直近3秒の音声＋テキスト＋履歴から、ターン終了の確率と待つべき時間を予測。CPU で約32ms。"
     caveats: 7 languages (no Japanese); conversation model distilled from Claude judgments; provider eval.
+    caveats_ja: "対応は7言語（日本語なし）。会話モデルは Claude の判定から蒸留。評価は提供元のもの。"
 
   - id: haru-4b
     name: Haru-4B
@@ -447,7 +500,9 @@ models:
     verified: 2026-11-13
     status: covered
     hook: Full-duplex spoken-dialogue foundation model; listens and speaks simultaneously in 133ms frames.
+    hook_ja: "全二重の音声対話基盤モデル。133ms フレームで聞くと話すを同時に行う。"
     caveats: Pretrained base model, not an instruction-tuned assistant; provider latency ~65ms on M1 Max int8.
+    caveats_ja: "事前学習済みのベースモデルで、指示チューニング済みのアシスタントではない。レイテンシは提供元計測で M1 Max の int8 で約65ms。"
 
   - id: action-is-all-you-need
     name: Action Is All You Need (A-126 / A-286 / A-537 / A-897)
@@ -461,7 +516,9 @@ models:
     verified: 2026-11-14
     status: covered
     hook: "Never chats: trained from scratch only on agent action logs; A-897 picks the right tool 95.2%."
+    hook_ja: "雑談は一切しない。エージェントの行動ログだけでゼロから学習。A-897 は適切なツール選択が 95.2%。"
     caveats: Held-out from same sources; no public benchmarks yet; largest model's data also grew (confounded).
+    caveats_ja: "ホールドアウトは同一のソースから。公開ベンチマークはまだない。最大モデルはデータ量も増えているため効果が交絡している。"
 
   - id: marimba
     name: Marimba
@@ -476,7 +533,9 @@ models:
     verified: 2026-11-14
     status: covered
     hook: One frozen-ASR encoder pass answers many typed questions about the last 8s of audio.
+    hook_ja: "凍結した ASR エンコーダの1回のパスで、直近8秒の音声に対する型付きの多様な質問に答える。"
     caveats: Only the last 8 seconds are scored; term scores are uncalibrated; no real-time guarantee claimed.
+    caveats_ja: "スコア付けの対象は直近8秒のみ。用語スコアは未校正。リアルタイム性は保証されていない。"
 
   - id: boris-2-think-instruct
     name: Boris-2-Think-Instruct
@@ -490,7 +549,9 @@ models:
     verified: 2026-11-14
     status: covered
     hook: 144M trained from scratch on one V100; decides by itself whether to think (empty think block = chat).
+    hook_ja: "V100 1台でゼロから学習した 144M。考えるかどうかを自分で決める（think ブロックが空＝雑談モード）。"
     caveats: Card's own example shows last-step arithmetic failure; shallow reasoning at this size.
+    caveats_ja: "カードの例自体が最終ステップの計算ミスを示している。このサイズでは推論は浅い。"
 
   - id: dharma-field-extractor
     name: Dharma Field Extractor
@@ -506,7 +567,9 @@ models:
     verified: 2026-11-05
     status: candidate
     hook: Extracts typed JSON fields from document images; returns null instead of inventing missing fields.
+    hook_ja: "文書画像から型付き JSON フィールドを抽出。欠けたフィールドはでっち上げず null を返す。"
     caveats: Provider benchmark only; openness unverified - treat as not-open until weights/license are public.
+    caveats_ja: "ベンチマークは提供元のもののみ。公開性は未確認。重みとライセンスが公開されるまでは非公開として扱うべき。"
 
   - id: lfm3-omni-2b
     name: LFM3-Omni-2B
@@ -520,6 +583,7 @@ models:
     verified: 2026-11-10
     status: candidate
     hook: Speech-to-speech omni model (listen, see, speak) in the LFM3 family at 2B.
+    hook_ja: "LFM3 ファミリーの 2B の音声対音声オムニモデル（聞く・見る・話す）。"
 
   - id: chandra-ocr-2-cultural-heritage
     name: chandra-ocr-2-cultural-heritage-eng
@@ -534,7 +598,9 @@ models:
     verified: 2026-11-10
     status: candidate
     hook: Fine-tuned on 11K pages of Yale's English handwriting archives; transcribes editorial marks too.
+    hook_ja: "イェール大学の英語手書きアーカイブ1.1万ページでファインチューン。編集上の書き込みも文字起こしする。"
     caveats: CER 1.28 -> 0.11 (provider); ~60% of lines exact - human review assumed.
+    caveats_ja: "CER が 1.28 から 0.11 に（提供元）。行の約60%が完全一致で、人手レビューが前提。"
 
   - id: sonojot-parakeet-v1
     name: sonojot-parakeet-v1
@@ -549,7 +615,9 @@ models:
     verified: 2026-11-13
     status: candidate
     hook: "English dictation specialist: full fine-tune + weight-space interpolation (alpha 0.5) with the base."
+    hook_ja: "英語ディクテーション特化。全パラメータのファインチューンに加え、ベースとの重み空間補間（alpha 0.5）を適用。"
     caveats: Card honestly notes part of the eval is in-domain and the dictation edge is not significant.
+    caveats_ja: "カードは、評価の一部がインドメインであること、ディクテーションでの優位は有意でないことを正直に注記している。"
 
   - id: surya-ocr-2-5
     name: Surya OCR 2.5
@@ -563,7 +631,9 @@ models:
     verified: 2026-11-11
     status: candidate
     hook: 689M VLM doing layout + OCR + tables in one model; OmniParseBench 85.9 (provider).
+    hook_ja: "レイアウト＋OCR＋表を1モデルでこなす 689M の VLM。OmniParseBench 85.9（提供元）。"
     caveats: Provider numbers; 91 languages.
+    caveats_ja: "数値は提供元のもの。91言語対応。"
 
   - id: typhoon-ocr2-2b
     name: Typhoon OCR V2 2B
@@ -578,7 +648,9 @@ models:
     verified: 2026-11-11
     status: candidate
     hook: Thai + English document parser returning positioned JSON (tables as HTML, formulas as LaTeX).
+    hook_ja: "タイ語＋英語の文書パーサー。位置情報付き JSON を返す（表は HTML、数式は LaTeX）。"
     caveats: Card documents a vLLM-version accuracy trap in detail; provider numbers.
+    caveats_ja: "カードは vLLM のバージョンによる精度の落とし穴を詳しく文書化している。数値は提供元のもの。"
 
   - id: chakkhu-ocr
     name: chakkhu-ocr
@@ -592,4 +664,6 @@ models:
     verified: 2026-11-11
     status: candidate
     hook: 18.6M-parameter Khmer + English OCR on CPU (~140ms/line) with per-line confidence scores.
+    hook_ja: "1,860万パラメータのクメール語＋英語 OCR。CPU で動作（1行あたり約140ms）、行ごとの信頼度スコア付き。"
     caveats: CER 4.50% on KHOB bench (provider); far above Tesseract's 20.55% per the card.
+    caveats_ja: "KHOB ベンチで CER 4.50%（提供元）。カードによれば Tesseract の 20.55% を大きく上回る。"
