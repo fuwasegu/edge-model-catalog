@@ -20,3 +20,4 @@ npm run preview  # ビルド済み成果物の確認
 ## 注意
 
 - fuwasegu 名義のプロジェクト。note（不破エンヂニヤリング）のブランド・リンク・文言は混ぜない。
+- アクセス計測は Cloudflare Web Analytics（`index.astro` の head に beacon を埋め込み済み、2026-11-16）。
