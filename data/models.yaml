@@ -667,3 +667,118 @@ models:
     hook_ja: "1,860万パラメータのクメール語＋英語 OCR。CPU で動作（1行あたり約140ms）、行ごとの信頼度スコア付き。"
     caveats: CER 4.50% on KHOB bench (provider); far above Tesseract's 20.55% per the card.
     caveats_ja: "KHOB ベンチで CER 4.50%（提供元）。カードによれば Tesseract の 20.55% を大きく上回る。"
+
+  - id: sola-air-1-5b
+    name: sola-air-1.5b
+    provider: bennett-xdlabs
+    url: https://huggingface.co/bennett-xdlabs/sola-air-1.5b
+    params_b: 1.5
+    license: Apache-2.0
+    base_model: Qwen2.5-Coder-1.5B-Instruct
+    categories: [code-generation]
+    modality: [text]
+    released: 2026-11-15
+    verified: 2026-11-16
+    status: covered
+    hook: QLoRA fine-tune that writes components for one tiny reactive UI framework (Sola AIR) and nothing else.
+    hook_ja: "小さなリアクティブUIフレームワーク「Sola AIR」の部品だけを書くQLoRAファインチューン。それ以外は書かない。"
+    caveats: "Provider benchmark of 20 prompts: 15/20 mounted and rendered vs 2/20 for the base model; no third-party verification."
+    caveats_ja: "提供元ベンチ20プロンプトではマウント・描画15/20（土台は2/20）。第三者検証なし。"
+
+  - id: s6-route
+    name: s6-route
+    provider: maxgfr
+    url: https://huggingface.co/maxgfr/s6-route
+    params_b: 0.0056
+    license: Apache-2.0
+    license_note: Static embedding component (potion-base-2M) is MIT.
+    categories: [decision, agent]
+    modality: [text]
+    released: 2026-11-16
+    verified: 2026-11-17
+    status: covered
+    hook: "3.7MB tool router: a 5.6M ternary model fused with static embeddings picks the tool, or asks the user when unsure."
+    hook_ja: "3.7MBのツールルーター。5.6Mの3値モデルと静的埋め込みの融合で道具を選び、自信がなければ聞き返す。"
+    caveats: "Provider-measured 0.8868 on unseen-tool requests; advantage over BM25 is fragile and it depends on distinctive tool names. MiniLM is more accurate if 91.6MB is acceptable, per the card itself."
+    caveats_ja: "未見ツールへの正答率0.8868は提供元測定。BM25への優位はもろく、特徴的なツール名が前提。カード自身が「91.6MBを許容できるならMiniLMが上」と明記。"
+
+  - id: kikimimi-hiragana-9m-v2
+    name: kikimimi-hiragana-9m-v2
+    provider: Yakimask
+    url: https://huggingface.co/Yakimask/kikimimi-hiragana-9m-v2
+    params_b: 0.0091
+    license: CC BY 4.0
+    categories: [speech-recognition, voice-parts]
+    modality: [audio, text]
+    released: 2026-11-16
+    verified: 2026-11-17
+    status: covered
+    hook: 9.1M Japanese ASR trained from scratch that outputs hiragana phonemes only, streaming every 40ms for full-duplex dialogue.
+    hook_ja: "一から学習した9.1Mの日本語ASR。出力はひらがなの発音列だけ、40msごとのストリーミングで全二重会話の耳になる。"
+    caveats: "Provider score 75.2 vs Whisper-small 74.5 on 100 FLEURS sentences (provider-measured, small sample); about 40% character errors on casual conversation audio, no digits or Latin letters."
+    caveats_ja: "FLEURS 100文で75.2点対Whisper-small 74.5点（提供元測定・小サンプル）。普段の会話音声では文字の約4割を間違え、数字・英字は聞き取れない。"
+
+  - id: pixie-32
+    name: pixie-32
+    provider: EmilioSchwaiger
+    url: https://huggingface.co/EmilioSchwaiger/pixie-32
+    params_b: 0.066
+    license: Apache-2.0
+    categories: [games]
+    modality: [text, image]
+    released: 2026-11-16
+    verified: 2026-11-17
+    status: covered
+    hook: 66M autoregressive model that generates only 32x32 palette-indexed pixel-art sprites from short text prompts.
+    hook_ja: "短いプロンプトから32×32のパレット方式ドット絵スプライトだけを生成する66Mの自己回帰モデル。"
+    caveats: Card calls it a small research model, not a finished asset generator; quality varies by subject and magenta edge pixels can remain. Only an NLL metric is reported, no visual quality benchmark.
+    caveats_ja: "カード自身が「完成した素材ジェネレータではなく小さな研究モデル」と明記。題材で品質にばらつき、端にマゼンタが残ることがある。評価はNLLのみで見た目のベンチなし。"
+
+  - id: eskd-yolo26
+    name: eskd-yolo26
+    provider: p4ulbr4dl3y
+    url: https://huggingface.co/p4ulbr4dl3y/eskd-yolo26
+    license: AGPL-3.0
+    license_note: Ultralytics AGPL-3.0 terms apply; check before commercial use.
+    base_model: YOLO26s
+    categories: [document]
+    modality: [image]
+    released: 2026-11-15
+    verified: 2026-11-17
+    status: covered
+    hook: Layout detector specialized in ESKD (GOST) engineering drawings - frames, title blocks, zones and text regions, no OCR.
+    hook_ja: "ロシア規格ESKD（GOST）図面専用のレイアウト検出。枠・表題欄・ゾーン・テキスト領域を拾い、文字は読まない。"
+    caveats: "Headline mAP50 0.995/0.991 is on synthetic test drawings (provider-measured); real scans have no ground truth, so only coverage is reported. Arrows task still training, symbols not started."
+    caveats_ja: "mAP50 0.995／0.991は合成テスト図面での提供元測定。実スキャンは正解データなしでカバレッジのみ。矢印は学習中、記号は未着手。"
+
+  - id: apptor-tiny-tts
+    name: apptor-tiny-tts
+    provider: apptor
+    url: https://huggingface.co/apptor/apptor-tiny-tts
+    params_b: 0.0045
+    license: Apache-2.0
+    categories: [text-to-speech]
+    modality: [text, audio]
+    released: 2026-11-15
+    verified: 2026-11-16
+    status: candidate
+    hook: "German-only tiny TTS: 4.5M parameters, a single 21MB ONNX file, about 40x realtime on 4 CPU threads."
+    hook_ja: "ドイツ語専用の極小TTS。4.5Mパラメータ、ONNX 1ファイル21MB、4CPUスレッドで実時間の約40倍。"
+    caveats: Provider-measured WER 5.0% on 16 unseen sentences; German only (English words are read as German), buzzy without the optional Vocos vocoder stage.
+    caveats_ja: "WER 5.0%は未見16文での提供元測定。ドイツ語のみ（英単語はドイツ語読み）、任意のVocosボコーダなしではブザー音が目立つ。"
+
+  - id: murivo-tts-octa-21m
+    name: murivo-tts-octa-21m
+    provider: samuelolubukun
+    url: https://huggingface.co/samuelolubukun/murivo-tts-octa-21m
+    params_b: 0.021
+    license: Apache-2.0
+    categories: [text-to-speech]
+    modality: [text, audio]
+    released: 2026-11-15
+    verified: 2026-11-16
+    status: candidate
+    hook: 21M TTS for eight low-resource African languages (Swahili, Hausa, Yoruba, Igbo and more) at 48kHz, 13-21x realtime on GPU.
+    hook_ja: "スワヒリ語・ハウサ語・ヨルバ語・イボ語など低リソースなアフリカの8言語を48kHzでしゃべる21MのTTS。GPUで実時間の13〜21倍。"
+    caveats: Provider-measured phoneme accuracy varies by language (95.1% Swahili down to 87.4% Luganda) and word accuracy is much weaker for some languages (43.8% Luganda); no third-party verification.
+    caveats_ja: "音素精度は言語ごとに95.1%（スワヒリ語）〜87.4%（ルガンダ語）と差があり、単語精度はルガンダ語43.8%と弱い言語もある（提供元測定・第三者検証なし）。"
