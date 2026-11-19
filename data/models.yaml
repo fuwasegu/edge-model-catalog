@@ -815,3 +815,100 @@ models:
     hook_ja: "チェスの指し手だけを聞き取る27Mの音声認識。ブラウザのWASMで完全オフライン。未見の声で約97%の完全一致。"
     caveats: English only; off-vocabulary speech is forced into move-like text; provider-measured, synthetic voices only.
     caveats_ja: "英語のみ。語彙外の音声も指し手風の文字にされてしまう。提供元測定で、学習は合成音声のみ。"
+
+  - id: aion-1-0-instruct-2-3b
+    name: Aion-1.0-Instruct-2.3B
+    provider: microsoft
+    url: https://huggingface.co/microsoft/Aion-1.0-Instruct-2.3B
+    params_b: 2.29
+    license: MIT
+    categories: [language, tool-calling]
+    modality: [text]
+    released: 2026-11-18
+    verified: 2026-11-19
+    status: covered
+    hook: "Microsoft's 2.3B on-device instruct SLM, the Phi Silica successor: previewed openly before an optimized build ships as the Windows OS SLM by end of January 2027; 32K context, 8 languages including Japanese, tool calling."
+    hook_ja: "Microsoftの2.3Bオンデバイス向けインストラクトSLM。Windows OS標準SLM「Phi Silica」の後継で、最適化版が2027年1月末までにOS標準になる前に先行公開。32Kコンテキスト、日本語を含む8言語、ツール呼び出し対応。"
+    caveats: "Provider-measured benchmarks (MMLU 55.15, IFEval 83.90); the card itself notes small models lag on world knowledge and multi-step reasoning, and safety metrics (XPIA/DIC/ECI) are still being improved. Needs transformers 5.x with trust_remote_code."
+    caveats_ja: "ベンチマークは提供元測定（MMLU 55.15、IFEval 83.90）。カード自身が「小ささゆえに世界知識と多段推論が弱い」と明記し、安全性指標（XPIA／DIC／ECI）は改善途上。動作にはtransformers 5.x＋trust_remote_codeが必要。"
+
+  - id: s6-ear2-nano
+    name: s6-ear2-nano
+    provider: maxgfr
+    url: https://huggingface.co/maxgfr/s6-ear2-nano
+    license: Apache-2.0
+    categories: [voice-parts]
+    modality: [audio]
+    released: 2026-11-17
+    verified: 2026-11-19
+    status: covered
+    hook: "632KB ternary end-of-turn detector: judges from the last 4 seconds of audio whether the speaker has finished, at 2.39ms per window in WASM; passed every quality gate its author pre-registered."
+    hook_ja: "632KBの3値・話し終わり判定モデル。直近4秒の音声から話者が話し終えたかを判定し、WASMで1回2.39ms。作者が事前登録した品質ゲートを全条件で合格した。"
+    caveats: "Provider-measured 0.8993 accuracy on the teacher's (Smart Turn v3.2) test clips vs the teacher's 0.9260; on real conversation audio (LiveKit eot-bench) AUC drops to 0.7299 and it catches only about half of true turn ends. Test set is mostly synthetic speech."
+    caveats_ja: "正解率0.8993は教師（Smart Turn v3.2）のテストクリップでの提供元測定（教師は0.9260）。実会話音声（LiveKit eot-bench）ではAUC 0.7299まで下がり、話し終わりの約半分しか拾えない。テストの大半は合成音声。"
+
+  - id: kirime
+    name: kirime
+    provider: Yakimask
+    url: https://huggingface.co/Yakimask/kirime
+    params_b: 0.00046
+    license: CC BY 4.0
+    categories: [voice-parts]
+    modality: [audio, text]
+    released: 2026-11-18
+    verified: 2026-11-19
+    status: covered
+    hook: "0.46M-parameter Japanese turn-end detector that never hears audio: it reads only kikimimi's streaming hiragana output plus loudness and emits an end-of-turn probability every 40ms for full-duplex dialogue."
+    hook_ja: "音声を聞かない日本語の話し終わり判定モデル、わずか0.46M。kikimimiのひらがな出力と音の大きさだけを見て、40msごとに話し終わり確率を出す。全二重会話の返事タイミングを決める部品。"
+    caveats: "Provider-measured on held-out video audio: at threshold 0.6, 2.9% premature cuts with 0.28s median decision latency. Trained on one-person YouTube speech without speaker labels, so it cannot tell a long pause from a turn change, and it inherits kikimimi's recognition errors."
+    caveats_ja: "評価は未学習の動画音声での提供元測定。しきい値0.6で早まり2.9%・判断までの中央値0.28秒。話者を区別せず1人のYouTube音声で学習したため、長めの間と順番交代を見分けず、kikimimiの聞き間違いの影響も受ける。"
+
+  - id: mini-pixel-art
+    name: mini-pixel-art
+    provider: AnticPan
+    url: https://huggingface.co/AnticPan/mini-pixel-art
+    params_b: 0.00435
+    license: MIT
+    categories: [games]
+    modality: [text, image]
+    released: 2026-11-18
+    verified: 2026-11-19
+    status: covered
+    hook: "Text-to-image for 16x16 pixel-art sprites only: a flow-matching DiT in raw pixel space with no VAE and no pretrained text encoder, 1.9M-8.8M parameters (recommended 4.35M at 4.5MB int8), running in the browser via WebGPU."
+    hook_ja: "16×16のドット絵スプライト専用のテキスト→画像モデル。VAEも事前学習済みテキストエンコーダもなし、ピクセル空間で直接動くflow-matching DiT。1.9M〜8.8M（推奨4.35M、int8で4.5MB）で、WebGPUによりブラウザで動く。"
+    caveats: "No numeric quality benchmark on the card; judging rests on sample images (stated to be un-cherry-picked) and the browser demo. 16x16 only - roughly 30x smaller than pixie-32, trading away resolution."
+    caveats_ja: "カードに品質の数値ベンチはなく、検証はサンプル画像（cherry-pickなしと明記）とブラウザデモが中心。16×16専用で、pixie-32の約30分の1の小ささと引き換えに解像度は低い。"
+
+  - id: tiny-voca-ja
+    name: tiny-voca-ja
+    provider: gachimoto
+    url: https://huggingface.co/gachimoto/tiny-voca-ja
+    params_b: 0.0045
+    license: Apache-2.0
+    categories: [text-to-speech]
+    modality: [text, audio]
+    released: 2026-11-18
+    verified: 2026-11-19
+    status: covered
+    hook: "4.5M Japanese TTS retrained from scratch on the English tiny-voca recipe: two synthetic voices (F2/M2) at 24kHz, faster than realtime on CPU, trained entirely on Qwen3-TTS-generated synthetic speech."
+    hook_ja: "英語版tiny-vocaのレシピで日本語をゼロから学習し直した4.5MのTTS。合成の2声（F2／M2）を24kHzで、CPUで実時間より速く読み上げる。学習データはQwen3-TTS生成の合成音声のみ。"
+    caveats: "Evaluation so far is only 4 unseen sentences (mean CER 7.3%, provider-measured); the card itself flags numbers and dates as weak readings. Training data contains no real speaker recordings."
+    caveats_ja: "検証はまだ未見4文のみ（CER平均7.3%、提供元測定）。カード自身が数字・日付の読みの弱さを明記。学習データに実在話者の録音は含まれない。"
+
+  - id: fastframes-s
+    name: FastFrames-S
+    provider: apple
+    url: https://huggingface.co/apple/FastFrames-S
+    params_b: 1.3
+    license: Apple AMLR
+    license_note: Research license; code is under the Apple Sample Code License. Check terms before commercial use.
+    base_model: Wan2.1-T2V-1.3B
+    categories: [research]
+    modality: [text, video]
+    released: 2026-11-16
+    verified: 2026-11-19
+    status: covered
+    hook: "Apple's 1.3B autoregressive 2-step video diffusion model: 480p frames at 36ms each on one GPU for interactive-latency generation (832x480, 81 frames, 16fps), with the per-component latency breakdown on the card."
+    hook_ja: "Appleの1.3B動画生成モデル。自己回帰型の2ステップ拡散で、480pを1GPU・1フレーム36msの「対話的な遅延」で生成（832×480・81フレーム・16fps）。遅延の内訳までカードに明記。"
+    caveats: "Built on a frozen Causal-Forcing++ generator over Wan2.1-T2V-1.3B - only the pixel decoder and KV-refinement networks are newly trained, so it is closer to a method release than a from-scratch 1.3B model. No quality scores on the card (VBench numbers are in the paper); Apple AMLR is a research license, check before commercial use."
+    caveats_ja: "土台はWan2.1-T2V-1.3B上のCausal-Forcing++生成器を凍結し、ピクセルデコーダとKV refinementだけを学習したもので、「1.3Bの新規モデル」というより手法の公開に近い。カードに品質スコアはなくVBenchは論文参照。Apple AMLRは研究向けライセンスで、商用利用は条文確認が必要。"
