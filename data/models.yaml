@@ -912,3 +912,103 @@ models:
     hook_ja: "Appleの1.3B動画生成モデル。自己回帰型の2ステップ拡散で、480pを1GPU・1フレーム36msの「対話的な遅延」で生成（832×480・81フレーム・16fps）。遅延の内訳までカードに明記。"
     caveats: "Built on a frozen Causal-Forcing++ generator over Wan2.1-T2V-1.3B - only the pixel decoder and KV-refinement networks are newly trained, so it is closer to a method release than a from-scratch 1.3B model. No quality scores on the card (VBench numbers are in the paper); Apple AMLR is a research license, check before commercial use."
     caveats_ja: "土台はWan2.1-T2V-1.3B上のCausal-Forcing++生成器を凍結し、ピクセルデコーダとKV refinementだけを学習したもので、「1.3Bの新規モデル」というより手法の公開に近い。カードに品質スコアはなくVBenchは論文参照。Apple AMLRは研究向けライセンスで、商用利用は条文確認が必要。"
+
+  - id: wvy-3d-1m
+    name: WVY-3D-1M
+    provider: StarpowerTechnology
+    url: https://huggingface.co/StarpowerTechnology/WVY-3D-1M
+    params_b: 0.00107
+    license: Apache-2.0
+    categories: [3d-generation]
+    modality: [3d]
+    released: 2026-11-20
+    verified: 2026-11-21
+    status: covered
+    hook: "About 1M parameters auto-rig a finished 3D creature so it can walk and dance: the WVY-3D follow-up shrunk from 23M to ~1M, written in plain numpy with hand-written autodiff, and it also runs as JavaScript in the browser."
+    hook_ja: "約1Mで出来上がった3Dクリーチャーに骨を入れて歩かせ・踊らせる自動リグモデル。WVY-3Dの第2弾で23Mから1Mへ小型化。素のnumpy＋手書き自動微分で、ブラウザのJavaScriptでも推論できる。"
+    caveats: "Training and evaluation used procedurally generated creatures; whether the same accuracy holds on complex human-modelled 3D assets is unknown."
+    caveats_ja: "学習も評価も手続き生成のクリーチャーが相手で、人間がモデリングした複雑な3Dアセットで同じ精度が出るかは分からない。"
+
+  - id: ccore-web-coder-4b
+    name: CCORE-Web-Coder-4B
+    provider: ccore
+    url: https://huggingface.co/ccore/CCORE-Web-Coder-4B
+    params_b: 4.21
+    license: Apache-2.0
+    base_model: Qwen/Qwen3.5-4B-Base
+    categories: [code-generation]
+    modality: [text]
+    released: 2026-11-20
+    verified: 2026-11-21
+    status: covered
+    hook: "4B writes a whole single-file React HTML page: the CCORE 3D-Coder lineage comes to the web, with a 262K context and GGUF distribution."
+    hook_ja: "4Bが1枚のReact HTMLを丸ごと書くWebコーダー。CCOREの3D-Coder系譜のWeb版で、262Kコンテキスト、GGUF配布。"
+    caveats: "Preview release: only about 26% of the planned training tokens so far, distributed as GGUF Q8_0 (4.48GB) only. The full version was scheduled for 2026-11-22 per the article."
+    caveats_ja: "プレビュー版で、予定している学習トークンの約26%までしか学習が進んでいない。配布はGGUFのQ8_0（4.48GB）のみ。正式版は記事によると2026-11-22予定。"
+
+  - id: flash-turn
+    name: flash-turn
+    provider: apptor
+    url: https://huggingface.co/apptor/flash-turn
+    params_b: 0.134
+    license: Apache-2.0
+    base_model: distilbert/distilbert-base-multilingual-cased
+    categories: [voice-parts]
+    modality: [audio, text]
+    released: 2026-11-20
+    verified: 2026-11-21
+    status: covered
+    hook: "73MB int8 ONNX classifier that decides 'is now a good time to speak' for voice assistants, judging turn-end vs barge-in in about 11ms on one CPU core; provider-measured 92.3% on turn-end vs 87.0% for a 4B model."
+    hook_ja: "73MBのint8 ONNXで音声アシスタントの「今話していいか」を決める判定モデル。話し終わりか割り込みかをCPU 1コア・約11ミリ秒で判定し、話し終わり判定は提供元測定で92.3%（4Bは87.0%）。"
+    caveats: "All figures are provider-measured on a held-out test set (300 Austrian-speaker clips for the turn-end number); a DistilBERT fine-tune, not a from-scratch model."
+    caveats_ja: "数字はすべて提供元測定の未学習テストセット（話し終わり判定はオーストリア話者300クリップ）。DistilBERTのファインチューンで、ゼロからの学習ではない。"
+
+  - id: wvy-image-composition-101
+    name: WVY-Image-Composition-101
+    provider: StarpowerTechnology
+    url: https://huggingface.co/StarpowerTechnology/WVY-Image-Composition-101
+    params_b: 0.0078
+    license: Apache-2.0
+    categories: [research]
+    modality: [text, image]
+    released: 2026-11-20
+    verified: 2026-11-21
+    status: covered
+    hook: "A 7.8M text-to-image model written from scratch in numpy, trained on just 6 PNGs and 8 colours, that draws unseen combinations: it learned composition, not memorisation. The provider calls it a model for learning, not for use."
+    hook_ja: "6枚のPNGと8色だけで「組み合わせ方」を学んだ7.8Mのテキスト→画像モデル。numpyでゼロから書かれ、見たことのない組み合わせも描ける。提供元自身が「使うためではなく学ぶための画像モデル」と位置づける。"
+    caveats: "A teaching demonstration, not a production image model; no quality benchmark against general text-to-image models."
+    caveats_ja: "学習用の実証モデルで、実用的な画像生成モデルではない。一般的なテキスト→画像モデルとの品質ベンチはない。"
+
+  - id: japanese-punctuation-restoration
+    name: japanese-punctuation-restoration
+    provider: ElToluene
+    url: https://huggingface.co/ElToluene/japanese-punctuation-restoration
+    params_b: 0.111
+    license: Apache-2.0
+    base_model: tohoku-nlp/bert-base-japanese-v3
+    categories: [language]
+    modality: [text]
+    released: 2026-11-20
+    verified: 2026-11-21
+    status: covered
+    hook: "110M BERT token classifier that restores Japanese punctuation (、 and 。), with an ONNX browser demo; provider-measured punctuation F1 0.8851 on 3,000 sentences and 0.8954 on unseen Wikipedia text."
+    hook_ja: "句読点のない日本語テキストに「、」と「。」を復元する110MのBERTトークン分類モデル。ONNX版ブラウザデモ付き。句読点F1は提供元測定で0.8851（評価用3,000文）、未見Wikipediaで0.8954。"
+    caveats: "Weak on spoken language: the card notes recall for 、 falls to 0.40 on speech-style text, while written text stays stable."
+    caveats_ja: "話し言葉では弱く、カードによると「、」の再現率は0.40まで落ちる。書き言葉では安定している。"
+
+  - id: littlepotion-1bpw
+    name: LittlePotion-1BPW
+    provider: MisasAI
+    url: https://huggingface.co/MisasAI/LittlePotion-1BPW
+    params_b: 0.008
+    license: MIT
+    base_model: minishlab/potion-base-8M
+    categories: [embeddings]
+    modality: [text]
+    released: 2026-11-20
+    verified: 2026-11-21
+    status: covered
+    hook: "A 931KB 1-bit embedding model (LittleBit quantisation of potion-base-8M) that keeps 98% of semantic similarity while shrinking from 15MB."
+    hook_ja: "埋め込みモデルを931KBまで絞っても意味の近さは98%維持。potion-base-8MをLittleBitで1ビット量子化した実証で、15MBから931KBへ。"
+    caveats: "The base model itself is only 8M, so it is unknown whether the same ratio holds for large embedding models; the provider itself marks the 164KB sister version as unusable."
+    caveats_ja: "元のモデル自体が8M級と小さいため、大規模な埋め込みモデルでも同じ比率で保てるかは分からない。姉妹版の164KBは提供元自身が「使い物にならない」と明記。"
