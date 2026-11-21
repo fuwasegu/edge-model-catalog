@@ -12,7 +12,7 @@ otherwise (one entry, BotPsy-0.8B, was additionally verified hands-on).
 
 ## Data
 
-`data/models.yaml` — 40 entries (33 covered in depth, 7 card-read candidates).
+`data/models.yaml` — 61 entries (52 covered in depth, 9 card-read candidates).
 
 ### Schema
 
